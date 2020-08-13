@@ -12,6 +12,8 @@ def main():
 
 	window = QWidget()
 	layout = QVBoxLayout()
+
+	window.setWindowTitle('Display Numbers')
 	
 	quit = QPushButton('Quit')
 	quit.setFont(QFont('Times', 18, QFont.Bold))
