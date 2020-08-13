@@ -3,7 +3,7 @@ from PySide2.QtCore import Qt
 from PySide2.QtGui import QFont
 from PySide2.QtWidgets import \
 	QApplication, QMainWindow, QWidget, QPushButton, \
-	QVBoxLayout, QHBoxLayout, QLCDNumber, QSlider
+	QVBoxLayout, QHBoxLayout, QLCDNumber, QSpinBox
 
 class MyWin(QMainWindow):
 	def __init__(self, *args, **kwargs):
@@ -21,9 +21,9 @@ class MyWin(QMainWindow):
 		lcd.setSegmentStyle(QLCDNumber.Filled)
 		lcd.display(1)
 
-		slider = QSlider(Qt.Horizontal)
-		slider.setRange(1, 15)
-		slider.setValue(1)
+		spinbox = QSpinBox()
+		spinbox.setRange(1, 15)
+		spinbox.setValue(1)
 
 		btnBin = QPushButton('Binary')
 		btnOct = QPushButton('Octal')
@@ -31,27 +31,27 @@ class MyWin(QMainWindow):
 		btnHex = QPushButton('Hexadecimal')
 
 		quit.clicked.connect(app.exit)
-		slider.valueChanged.connect(lambda: lcd.display(slider.value()))
+		spinbox.valueChanged.connect(lambda: lcd.display(spinbox.value()))
 		btnBin.clicked.connect(lambda: 
 			(lcd.setDigitCount(4),
 			lcd.setMode(QLCDNumber.Bin),
-			lcd.display(slider.value())))
+			lcd.display(spinbox.value())))
 		btnOct.clicked.connect(lambda: 
 			(lcd.setDigitCount(2),
 			lcd.setMode(QLCDNumber.Oct),
-			lcd.display(slider.value())))
+			lcd.display(spinbox.value())))
 		btnDec.clicked.connect(lambda: 
 			(lcd.setDigitCount(2),
 			lcd.setMode(QLCDNumber.Dec),
-			lcd.display(slider.value())))
+			lcd.display(spinbox.value())))
 		btnHex.clicked.connect(lambda: 
 			(lcd.setDigitCount(1),
 			lcd.setMode(QLCDNumber.Hex),
-			lcd.display(slider.value())))
+			lcd.display(spinbox.value())))
 		
 		layout.addWidget(quit)
 		layout.addWidget(lcd)
-		layout.addWidget(slider)
+		layout.addWidget(spinbox)
 		buttons = QHBoxLayout()
 		buttons.addWidget(btnBin)
 		buttons.addWidget(btnOct)
